@@ -27,6 +27,14 @@ var passwordSymbol = { //?
  // prompt("Include special characters?");
 };
 
+// this object contains all the password criteria functions below
+var random = {
+  lower: getLowercase,
+  upper: getUppercase,
+  number: getNumber,
+  symbol: getSymbol
+}
+
 // password criteria functions
 // get a random lowercase letter using browser character set (lowercase is 97 - 122)
 function getLowercase () {
@@ -38,7 +46,6 @@ function getUppercase () {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
 
-
 // get a random number (numbers are 48 - 57)
 function getNumber () {
   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
@@ -49,7 +56,10 @@ function getSymbol () {
   var symbols = "!@#$%^&*(){}[]=<>/,.";
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
-//console.log(getSymbol());
+
+
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
