@@ -1,41 +1,55 @@
 // Assignment code here
 
-// need to create a function called generatePassword
-function generatePassword() {
+// how to do length? add this to the variable passwordLength?
+if (passwordLength >= 8 && passwordLength <= 128) {
+  // execute password generation
+} 
+else {
+  alert("Password must be between 8 and 128 characters.");
+  // repeat prompt for length
+}
 
+// need to create a function called generatePassword
+function generatePassword(passwordUpper, passwordLower, passwordNumber, passwordSymbol) { // or (lower, upper, number, symbol)? 
+  var generatedPass = "";
+
+
+  // for filtering out unchecked criteria
+  //var typesCount = lower + upper + number + symbol;
+  //console.log("typesCount: ", typesCount);
 }
 
 // need to prompt user to select password criteria after clicking the generate password button
+// store user input for password character length
+var passwordLength = // ?? needs to be something to input and not confirm yes/no
+("How many characters? Choose length between 8 - 128 characters.");
 
-var passwordLength = { // ? 
- // prompt("How many characters? Choose length between 8 - 128 characters.");
-};
+// store user input for yes/no uppercase characters
+var passwordUpper = confirm("Include uppercase letters?");
 
-var passwordUpper = { //?
- // prompt("Include uppercase letters?");
-};
+// store user input for yes/no lowercase characters
+var passwordLower = confirm("Include lowercase letters?");
 
-var passwordLower = { //?
- // prompt("Include lowercase letters?");
-};
+// store user input for yes/no numbers
+var passwordNumber = confirm("Include numbers?");
 
-var passwordNumber = { //?
- // prompt("Include numbers?");
-};
+// store user input for yes/no special characters
+var passwordSymbol = confirm("Include special characters?");
 
-var passwordSymbol = { //?
- // prompt("Include special characters?");
-};
+// include if statement in case no criteria are selected
 
-// this object contains all the password criteria functions below
+// this object contains all the password criteria functions below. need to incorporate this into generatePassword
 var random = {
   lower: getLowercase,
   upper: getUppercase,
   number: getNumber,
-  symbol: getSymbol
+  passwordSymbol: getSymbol
 }
 
 // password criteria functions
+// define number of characters to be generated in password
+// add length funciton code here
+
 // get a random lowercase letter using browser character set (lowercase is 97 - 122)
 function getLowercase () {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
