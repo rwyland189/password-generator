@@ -2,6 +2,62 @@
 
 // need to create a function called generatePassword
 function generatePassword(lower, upper, number, symbol) {
+
+  // prompt the user to select password criteria
+  // store user input for password character length
+  var passwordLength = prompt('How many characters? Choose length between 8 - 128 characters.');
+
+  // make sure password length fits criteria
+  if (passwordLength >= 8 && passwordLength <= 128) {
+    // execute password generation?
+  } 
+  else {
+    alert('Password must be between 8 and 128 characters.');
+    return; // still not returning the prompt?
+  }
+
+  // store user input for yes/no uppercase characters
+  var passwordUpper = confirm('Include uppercase letters?');
+
+  // store user input for yes/no lowercase characters
+  var passwordLower = confirm('Include lowercase letters?');
+
+  // store user input for yes/no numbers
+  var passwordNumber = confirm('Include numbers?');
+
+  // store user input for yes/no special characters
+  var passwordSymbol = confirm('Include special characters?');
+
+  // this object contains all the password criteria functions below. need to incorporate this into generatePassword
+  var random = {
+    lower: getLowercase,
+    upper: getUppercase,
+    number: getNumber,
+    passwordSymbol: getSymbol
+  }
+
+  // password criteria functions
+  // get a random lowercase letter using browser character set (lowercase is 97 - 122)
+  function getLowercase () {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+  }
+
+  // get a random uppercase letter (uppercase is 65 - 90)
+  function getUppercase () {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+  }
+
+  // get a random number (numbers are 48 - 57)
+  function getNumber () {
+    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+  }
+
+  // get a special character using a string (special characters are broken up in different sections of browser character set)
+  function getSymbol () {
+    var symbols = '!@#$%^&*(){}[]=<>/,.';
+    return symbols[Math.floor(Math.random() * symbols.length)];
+  }
+  
   // initialized password variable
   var generatedPassword = '';
 
@@ -32,72 +88,12 @@ function generatePassword(lower, upper, number, symbol) {
       console.log('funcName: ', funcName);
 
       generatedPassword === random[funcName]();
-
-      return generatedPassword;
       // console not showing anything
       console.log(generatedPassword);
     });
   }
     
 }
-
-// prompt the user to select password criteria
-// store user input for password character length
-var passwordLength = prompt('How many characters? Choose length between 8 - 128 characters.');
-
-// make sure password length fits criteria
-if (passwordLength >= 8 && passwordLength <= 128) {
-  // execute password generation?
-} 
-else {
-  alert('Password must be between 8 and 128 characters.');
-}
-
-// store user input for yes/no uppercase characters
-var passwordUpper = confirm('Include uppercase letters?');
-
-// store user input for yes/no lowercase characters
-var passwordLower = confirm('Include lowercase letters?');
-
-// store user input for yes/no numbers
-var passwordNumber = confirm('Include numbers?');
-
-// store user input for yes/no special characters
-var passwordSymbol = confirm('Include special characters?');
-
-// this object contains all the password criteria functions below. need to incorporate this into generatePassword
-var random = {
-  lower: getLowercase,
-  upper: getUppercase,
-  number: getNumber,
-  passwordSymbol: getSymbol
-}
-
-// password criteria functions
-// get a random lowercase letter using browser character set (lowercase is 97 - 122)
-function getLowercase () {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
-
-// get a random uppercase letter (uppercase is 65 - 90)
-function getUppercase () {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-
-// get a random number (numbers are 48 - 57)
-function getNumber () {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-
-// get a special character using a string (special characters are broken up in different sections of browser character set)
-function getSymbol () {
-  var symbols = '!@#$%^&*(){}[]=<>/,.';
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
-
-
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
