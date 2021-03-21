@@ -19,10 +19,9 @@ function generatePassword(passwordUpper, passwordLower, passwordNumber, password
   //console.log("typesCount: ", typesCount);
 }
 
-// need to prompt user to select password criteria after clicking the generate password button
+// prompt the user to select different password criteria
 // store user input for password character length
-var passwordLength = // ?? needs to be something to input and not confirm yes/no
-("How many characters? Choose length between 8 - 128 characters.");
+var passwordLength = prompt("How many characters? Choose length between 8 - 128 characters.");
 
 // store user input for yes/no uppercase characters
 var passwordUpper = confirm("Include uppercase letters?");
@@ -37,6 +36,17 @@ var passwordNumber = confirm("Include numbers?");
 var passwordSymbol = confirm("Include special characters?");
 
 // include if statement in case no criteria are selected
+if (
+  passwordUpper === false &&
+  passwordLower === false &&
+  passwordNumber === false &&
+  passwordSymbol === false
+
+  //how to connect to an alert?
+  alert("Must select at least one criteria.");
+  //then redo the prompt asking for which criteria to include?
+
+)
 
 // this object contains all the password criteria functions below. need to incorporate this into generatePassword
 var random = {
