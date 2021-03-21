@@ -1,52 +1,69 @@
 // Assignment code here
 
-// how to do length? add this to the variable passwordLength?
+// need to create a function called generatePassword
+function generatePassword(lower, upper, number, symbol) {
+  // initialized password variable
+  var generatedPassword = '';
+
+  // using var typesCount but try using if else?
+  var typesCount = passwordLower + passwordUpper + passwordNumber + passwordSymbol;
+  console.log('typesCount: ', typesCount);
+
+  // filter out unselected password criteria by looping through each item using Object.values
+  var typesArr = [{passwordUpper}, {passwordLower}, {passwordNumber}, {passwordSymbol}].filter(
+    item => Object.values(item)[0]
+  );
+  console.log('typesArr: ', typesArr);
+
+  // if no criteria are selected alert the user and prompt them to select criteria again
+  if(typesCount === 0) {
+    alert('Must select at least one criteria.');
+    //how to redo password prompts then?
+  }
+
+  // generate various characters based on which criteria were selected
+  // Loop over the length and call the approrpiate generator functions
+  // increment by the number of selected criteria in typesCount
+  for(var i = 0; i < length; i += typesCount) {
+    //loop through the array
+    typesArr.forEach(type => {
+      var funcName = Object.keys(type)[0];
+      // console not showing anything
+      console.log('funcName: ', funcName);
+
+      generatedPassword === random[funcName]();
+
+      return generatedPassword;
+      // console not showing anything
+      console.log(generatedPassword);
+    });
+  }
+    
+}
+
+// prompt the user to select password criteria
+// store user input for password character length
+var passwordLength = prompt('How many characters? Choose length between 8 - 128 characters.');
+
+// make sure password length fits criteria
 if (passwordLength >= 8 && passwordLength <= 128) {
-  // execute password generation
+  // execute password generation?
 } 
 else {
-  alert("Password must be between 8 and 128 characters.");
-  // repeat prompt for length
+  alert('Password must be between 8 and 128 characters.');
 }
-
-// need to create a function called generatePassword
-function generatePassword(passwordUpper, passwordLower, passwordNumber, passwordSymbol) { // or (lower, upper, number, symbol)? 
-  var generatedPass = "";
-
-
-  // for filtering out unchecked criteria
-  //var typesCount = lower + upper + number + symbol;
-  //console.log("typesCount: ", typesCount);
-}
-
-// prompt the user to select different password criteria
-// store user input for password character length
-var passwordLength = prompt("How many characters? Choose length between 8 - 128 characters.");
 
 // store user input for yes/no uppercase characters
-var passwordUpper = confirm("Include uppercase letters?");
+var passwordUpper = confirm('Include uppercase letters?');
 
 // store user input for yes/no lowercase characters
-var passwordLower = confirm("Include lowercase letters?");
+var passwordLower = confirm('Include lowercase letters?');
 
 // store user input for yes/no numbers
-var passwordNumber = confirm("Include numbers?");
+var passwordNumber = confirm('Include numbers?');
 
 // store user input for yes/no special characters
-var passwordSymbol = confirm("Include special characters?");
-
-// include if statement in case no criteria are selected
-if (
-  passwordUpper === false &&
-  passwordLower === false &&
-  passwordNumber === false &&
-  passwordSymbol === false
-
-  //how to connect to an alert?
-  alert("Must select at least one criteria.");
-  //then redo the prompt asking for which criteria to include?
-
-)
+var passwordSymbol = confirm('Include special characters?');
 
 // this object contains all the password criteria functions below. need to incorporate this into generatePassword
 var random = {
@@ -57,9 +74,6 @@ var random = {
 }
 
 // password criteria functions
-// define number of characters to be generated in password
-// add length funciton code here
-
 // get a random lowercase letter using browser character set (lowercase is 97 - 122)
 function getLowercase () {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -77,7 +91,7 @@ function getNumber () {
 
 // get a special character using a string (special characters are broken up in different sections of browser character set)
 function getSymbol () {
-  var symbols = "!@#$%^&*(){}[]=<>/,.";
+  var symbols = '!@#$%^&*(){}[]=<>/,.';
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
