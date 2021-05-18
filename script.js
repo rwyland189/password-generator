@@ -29,9 +29,9 @@ function generatePassword(lower, upper, number, symbol) {
 
   // this object contains all the password criteria functions below
   var random = {
-    lower: getLowercase,
-    upper: getUppercase,
-    number: getNumber,
+    passwordLower: getLowercase,
+    passwordUpper: getUppercase,
+    passwordNumber: getNumber,
     passwordSymbol: getSymbol
   }
 
@@ -71,27 +71,21 @@ function generatePassword(lower, upper, number, symbol) {
   }
 
   // filter out unselected password criteria by looping through each item using Object.values
-  var typesArr = [{passwordUpper}, {passwordLower}, {passwordNumber}, {passwordSymbol}].filter(
-    item => Object.values(item)[0]
-  );
+  var typesArr = [{passwordUpper}, {passwordLower}, {passwordNumber}, {passwordSymbol}].filter(item => Object.values(item)[0]);
   console.log('typesArr: ', typesArr);
 
   // generate various characters based on which criteria were selected
   // Loop over the length and call the approrpiate generator functions
   // increment by the number of selected criteria in typesCount
-  for(var i = 0; i < length; i += typesCount) {
-    //loop through the array
-    typesArr.forEach(type => {
-      var funcName = Object.keys(type)[0];
-      // console not showing anything
-      console.log('funcName: ', funcName);
+  for(var i = 0; i < parseInt(passwordLength); i++) {
 
-      generatedPassword += random[funcName]();
-      // console not showing anything
-      console.log(generatedPassword);
-    });
+    var randomIndex = Math.floor(Math.random() * typesArr.length); // example num from 0 - 3
+
+    var funcName = Object.keys(typesArr[randomIndex])[0]; // example "passwordSymbol"
+
+    generatedPassword += random[funcName](); // like saying "random.passwordSymbol()" // "#"
   }
-    
+  return generatedPassword; // example "092384kndaso#r"
 };
 
 // Get references to the #generate element
@@ -99,7 +93,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword();// example "092384kndaso#r"
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
